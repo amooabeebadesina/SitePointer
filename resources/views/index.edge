@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Site Pointer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  {{ style('css/animate.min.css') }}
+  {{ style('css/paper-dashboard.css') }}
+  {{ style('style.css') }}
+</head>
+<body>
+<div class="container-fluid auth-container">
+  <div class="row">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-6 col-md-6">
+      <form action="{{route('login')}}" method="post">
+        {{csrfField()}}
+        <div class="card login-card">
+          <div class="header">
+            <h4 class="text-center auth-header-text"> Login</h4>
+          </div>
+          <hr/>
+          <div class="content">
+            @if(old('error'))
+              <div class="alert alert-danger">
+                {{old('error')}}
+              </div>
+            @endif
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label>Email</label>
+                <input type="email" name="email" id="email" class="form-control border-input"
+                       placeholder="Email" required/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label>Password</label>
+                <input type="password" name="password" id="password" class="form-control border-input"
+                         placeholder="Password" required/>
+              </div>
+            </div><br/>
+            <div class="row">
+              <div class="form-group text-center col-sm-12">
+                <input class="btn btn-primary btn-fill btn-wd" type="submit" value="Login">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-3 col-md-3"></div>
+  </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

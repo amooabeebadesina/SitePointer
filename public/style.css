@@ -1,0 +1,39 @@
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Comfortaa', cursive !important;
+}
+
+.auth-container {
+  background: #eeeeee;
+  min-height: 100%;
+}
+
+.login-card {
+  margin-top: 80px;
+}
+
+.red-icon {
+  color: deeppink;
+}
+
+.padding-top-5 {
+  padding-top: 5px !important;
+}
+
+.padding-top-10 {
+  padding-top: 10px !important;
+}
+
+.padding-top-20 {
+  padding-top: 20px !important;
+}
+
+.padding-bottom-20 {
+  padding-bottom: 20px !important;
+}
+
+.modal-backdrop {
+  z-index: 0 !important;
+}

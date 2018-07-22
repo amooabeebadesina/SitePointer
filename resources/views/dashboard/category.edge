@@ -1,0 +1,70 @@
+@layout('dashboard.master')
+
+@section('content')
+
+<div class="container-fluid">
+  <div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Site</h4>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('sites.post')}}" method="post" enctype="multipart/form-data">
+            {{csrfField()}}
+            <div class="form-group padding-top-5">
+              <label>Category</label>
+              <select name="category" class="form-control border-input">
+                <option value="{{category.id}}">{{category.label}}</option>
+              </select>
+            </div>
+            <div class="form-group padding-top-5">
+              <label>Site Name</label>
+              <input type="text" class="form-control border-input" name="label" placeholder="E.g Sport">
+            </div>
+            <div class="form-group padding-top-5">
+              <label>Image</label>
+              <input type="file" class="form-control border-input" name="image">
+            </div>
+            <div class="form-group padding-top-5">
+              <label>Description (Optional)</label>
+              <textarea class="form-control border-input" name="description"></textarea>
+            </div>
+            <div class="form-group text-center padding-top-5">
+              <input type="submit" class="btn btn-primary btn-fill">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card">
+    <div class="header">
+      <div class="pull-right">
+        <button class="btn btn-success btn-fill" data-toggle="modal" data-target="#myModal">
+          <i class="ti-plus"></i>
+          Add New Site
+        </button>
+      </div>
+      <h4 class="title">{{category.label}}</h4>
+    </div><hr/>
+    <div class="content">
+      @if(category.sites.length < 1)
+      <div class="text-center padding-top-10">
+        <h3>No sites available</h3>
+      </div>
+      @else
+      <div class="text-center padding-top-10">
+        No sites available
+      </div>
+      @endif
+    </div>
+  </div>
+</div>
+
+@endsection

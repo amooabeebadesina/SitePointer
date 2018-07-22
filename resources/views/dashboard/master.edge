@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Site Pointer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+  {{ style('css/animate.min.css') }}
+  {{ style('css/paper-dashboard.css') }}
+  {{ style('style.css') }}
+  {{ style('css/demo.css') }}
+  {{ style('css/themify-icons.css') }}
+</head>
+<body>
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <a href="{{ route('dashboard') }}" class="simple-text">
+          SitePointer
+        </a>
+      </div>
+
+      <ul class="nav">
+        <li class="active">
+          <a href="{{ route('dashboard') }}">
+            <i class="ti-panel"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('categories') }}">
+            <i class="ti-view-list-alt"></i>
+            <p>Categories</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+          <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <p>Admin</p>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ route('logout') }}">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      @!section('content')
+    </div>
+
+    <footer class="footer">
+      <div class="container-fluid text-center">
+        <div class="padding-top-5">Built with <i class="ti-heart red-icon"></i> in July</div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+{{script('js/jquery-1.10.2.js')}}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{script('js/demo.js')}}
+{{script('js/paper-dashboard.js')}}
+</html>
