@@ -11,8 +11,6 @@ class GeneralController extends BaseController {
     return this.sendSuccess(data)
   }
 
-  async
-
 }
 
 module.exports = GeneralController;

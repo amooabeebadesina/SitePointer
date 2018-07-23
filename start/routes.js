@@ -19,6 +19,7 @@ Route
   .group(() => {
     Route.get('ping', 'API/GeneralController.ping');
     Route.get('categories', 'API/CategoryController.index');
+    Route.get('categories/:id/sites', 'API/CategoryController.getSites')
   })
   .prefix('api/v1');
 
@@ -35,4 +36,5 @@ Route
     Route.get('categories/:id', 'AdminController.getCategory').as('category.view');
     Route.post('sites', 'AdminController.addSite').as('sites.post');
   })
-  .prefix('dashboard');
+  .prefix('dashboard')
+  .middleware(['auth:session']);

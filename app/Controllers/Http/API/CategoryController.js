@@ -7,12 +7,21 @@ class CategoryController extends BaseController {
 
   constructor () {
     super();
-    this.categoryRepo = CategoryRepository;
+    this.categoryRepo = new CategoryRepository();
   }
 
   async index () {
-    const catRepo = new CategoryRepository();
-    return this.sendSuccess(await catRepo.getCategories());
+    return this.sendSuccess(await this.categoryRepo.getCategories());
+  }
+
+  async getSites ({ request, response, params}) {
+    const queryParams = request.get();
+    const data = {
+      id: params.id,
+      perPage: queryParams.perPage ? queryParams.perPage : 10,
+      page: queryParams.page ? queryParams.page : 1
+    };
+    return this.sendSuccess(await this.categoryRepo.getSites(data))
   }
 
 }

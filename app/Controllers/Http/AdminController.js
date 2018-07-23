@@ -4,6 +4,7 @@ const CategoryRepository = use('App/Repositories/CategoryRepository');
 const SiteRepository = use('App/Repositories/SiteRepository');
 const Category = use('App/Models/Category');
 const CloudinaryService = use('App/Services/CloudinaryService');
+const Site = use('App/Models/Site');
 
 class AdminController {
 
@@ -62,18 +63,28 @@ class AdminController {
 
   async getCategory( {params, view }) {
     const category = await this.categoryRepo.getCategory(params.id);
+    console.log(category.toJSON());
     return view.render('dashboard.category', {category: category.toJSON()});
   }
 
-  async addSite( {request, response}) {
-    console.log(request.request.file)
-   /* request.multipart.file('image', {}, async (file) => {
-      CloudinaryService.uploader.upload(file.stream, async (result) => {
-        console.log(result);
-      })
-    });
-
-    await request.multipart.process()*/
+  async addSite( {request, response, session}) {
+    const {label, url, description, category} = request.all();
+    const file = request.file('image');
+    try {
+      const result = await CloudinaryService.v2.uploader.upload(file.tmpPath, {folder: 'sitepointer'});
+      if (result.hasOwnProperty('public_id')) {
+        const secure_url = result.secure_url;
+        const data = {
+          label, url, description, category, secure_url
+        };
+        await this.siteRepo.addSite(data);
+        session.flash({success: 'Successfully added site'});
+        return response.redirect('back');
+      }
+    } catch (e) {
+      session.flash({error: 'Error Uploading Image'});
+      return response.redirect('/')
+    }
   }
 }
 

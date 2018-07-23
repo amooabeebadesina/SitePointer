@@ -1,6 +1,7 @@
 'use strict';
 
 const Category = use('App/Models/Category');
+const Site = use('App/Models/Site');
 
 class CategoryRepository {
 
@@ -8,8 +9,8 @@ class CategoryRepository {
     return await Category.query().where('id', id).with('sites').first()
   }
 
-  async getSites(id) {
-    return await Category.where('id', id).posts().fetch()
+  async getSites(data) {
+    return await Site.query().where('category_id', data.id).paginate(data.page, data.perPage)
   }
 
   async  getCategories() {
