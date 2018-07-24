@@ -2,6 +2,7 @@
 
 const Category = use('App/Models/Category');
 const Site = use('App/Models/Site');
+const Database = use('Database');
 
 class CategoryRepository {
 
@@ -10,7 +11,9 @@ class CategoryRepository {
   }
 
   async getSites(data) {
-    return await Site.query().where('category_id', data.id).paginate(data.page, data.perPage)
+    return await Database.from('sites').whereExists(function () {
+        this.from('categories').where('categories.label', data.label.toLowerCase())
+    }).paginate(data.page, data.perPage);
   }
 
   async  getCategories() {
@@ -23,7 +26,7 @@ class CategoryRepository {
 
   async addCategory(data) {
     let category = new Category();
-    category.label = data.label;
+    category.label = data.label.toLowerCase();
     await category.save();
     return this.getCategories();
   }

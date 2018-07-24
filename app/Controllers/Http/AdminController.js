@@ -4,7 +4,6 @@ const CategoryRepository = use('App/Repositories/CategoryRepository');
 const SiteRepository = use('App/Repositories/SiteRepository');
 const Category = use('App/Models/Category');
 const CloudinaryService = use('App/Services/CloudinaryService');
-const Site = use('App/Models/Site');
 
 class AdminController {
 
@@ -51,7 +50,7 @@ class AdminController {
   async addCategory({ request, response, auth, view }) {
     const label = request.input('label');
     let category = new Category;
-    category.label = label;
+    category.label = label.toLowerCase();
     await category.save();
     return response.redirect('back')
   }
@@ -63,7 +62,6 @@ class AdminController {
 
   async getCategory( {params, view }) {
     const category = await this.categoryRepo.getCategory(params.id);
-    console.log(category.toJSON());
     return view.render('dashboard.category', {category: category.toJSON()});
   }
 

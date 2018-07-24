@@ -17,7 +17,7 @@ class CategoryController extends BaseController {
   async getSites ({ request, response, params}) {
     const queryParams = request.get();
     const data = {
-      id: params.id,
+      label: params.label,
       perPage: queryParams.perPage ? queryParams.perPage : 10,
       page: queryParams.page ? queryParams.page : 1
     };

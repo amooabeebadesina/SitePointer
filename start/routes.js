@@ -19,7 +19,7 @@ Route
   .group(() => {
     Route.get('ping', 'API/GeneralController.ping');
     Route.get('categories', 'API/CategoryController.index');
-    Route.get('categories/:id/sites', 'API/CategoryController.getSites')
+    Route.get('categories/:label/sites', 'API/CategoryController.getSites')
   })
   .prefix('api/v1');
 
